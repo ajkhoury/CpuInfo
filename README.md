@@ -7,7 +7,7 @@ More importantly this repository is dedicated to the extremely lightweight and p
 
 This project uses the compiler-independent CMake build system. Currently this project should compile with the GCC, Clang, and MSVC compilers on Windows. I have not tested compilation under any Linux distributions.
 
-To build simply run CMake to generate build files of your choice. Please see https://cmake.org/cmake-tutorial/ and/or https://cmake.org/runningcmake/ or simply using CLion which integrates with CMake very well.
+To build simply run CMake to generate build files of your choice. Please see https://cmake.org/cmake-tutorial/ and/or https://cmake.org/runningcmake/ or simply use CLion which integrates with CMake very well.
 
 # License
 
