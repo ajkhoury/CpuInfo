@@ -11,4 +11,6 @@ To build simply run CMake to generate build files of your choice. Please see htt
 
 # License
 
-Licenses pertaining to this project can be found under the LICENSES sub-folder.
+This project is licensed under the Apache 2.0 license.
+
+Additional licenses pertaining to this project can be found under the LICENSES sub-folder.
