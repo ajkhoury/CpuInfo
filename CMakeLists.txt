@@ -31,15 +31,20 @@ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(nasm)
 
 #
-# Use the NASM compiler
-#
-nasm_set_config(win64
-        INCLUDES ${CMAKE_SOURCE_DIR}/include/nasm.inc)
-
-#
 # Define CpuInfo project
 #
 project(CpuInfo C)
+
+#
+# Use the NASM compiler
+#
+if("${CMAKE_SIZEOF_VOID_P}" STREQUAL "8")
+    nasm_set_config(win64
+                    INCLUDES ${CMAKE_SOURCE_DIR}/include/nasm.inc)
+else()
+    nasm_set_config(win32
+                    INCLUDES ${CMAKE_SOURCE_DIR}/include/nasm.inc)
+endif()
 
 #
 # C Language Standard
@@ -58,16 +63,22 @@ include_directories(
 # If using MSVC, disable the annoying C4159 warning.
 #
 if(MSVC)
-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4159")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /wd4159")
 endif()
 
 #
 # Project source files.
 #
-set(CpuInfo_ASM_SOURCE_FILES
-        #src/x64/cpuid.asm # Use if intrinsics are not available
-        #src/i386/cpuid.asm # Use if intrinsics are not available
-        )
+if("${CMAKE_SIZEOF_VOID_P}" STREQUAL "8")
+    set(CpuInfo_ASM_SOURCE_FILES
+            src/x64/cpuid.asm # Use if intrinsics are not available
+            )
+else()
+    set(CpuInfo_ASM_SOURCE_FILES
+            src/i386/cpuid.asm # Use if intrinsics are not available
+            )
+endif()
+
 set(CpuInfo_SOURCE_FILES
         src/pif.c
         src/main.c
